@@ -40,25 +40,9 @@ function createMap(earthquakes) {
         accessToken: API_KEY
     }).addTo(mymap);
 
-    var greyscaleMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
-        maxZoom: 18,
-        id: "mapbox.light",
-        accessToken: API_KEY
-    }).addTo(mymap);
-
-    var outdoorMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
-        maxZoom: 18,
-        id: "mapbox.outdoors",
-        accessToken: API_KEY
-    }).addTo(mymap);
-
     // Define baseMaps object to hold our base layers
     var baseMaps = {
         "Satellite": satelliteMap,
-        "Grayscale": grayscaleMap,
-        "Outdoors": outdoorsMap
     };
 
     // Create overlay object to hold our overlay layer
@@ -74,4 +58,5 @@ function createMap(earthquakes) {
         zoom: 5,
         layers: [satelliteMap, earthquakes]
     });
+
 }
