@@ -1,6 +1,7 @@
 // Retrieve data set vis URL of JSON file
 var alleqUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 var tectonicPlates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+
 // Initialize & Create Two Separate LayerGroups: earthquakes & tectonicPlates
 var earthquakes = new L.LayerGroup();
 var tectonicPlates = new L.LayerGroup();
@@ -126,6 +127,25 @@ function createMap(earthquakes) {
     L.control.layers(baseMaps, overlayMaps, {
         collapsed: false
       }).addTo(myMap);
+
+    // Create the faultlines and add them to the faultline layer
+    d3.json(faultlinequery, function(data) {
+        L.geoJSON(data, {
+        style: function() {
+            return {color: "orange", fillOpacity: 0}
+        }
+        }).addTo(faultLine)
+    })
+
+    // color function to be used when creating the legend
+    function getColor(d) {
+        return d > 5 ? '#ff3333' :
+            d > 4  ? '#ff6633' :
+            d > 3  ? '#ff9933' :
+            d > 2  ? '#ffcc33' :
+            d > 1  ? '#ffff33' :
+                        '#ccff33';
+    }
     
      // Set Up Legend
      var legend = L.control({ position: "bottomright" });
