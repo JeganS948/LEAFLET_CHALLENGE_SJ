@@ -20,6 +20,14 @@ function createFeatures(earthquakeData) {
         +"</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
     }
 
+    // Function to Determine Size of Marker Based on the Magnitude of the Earthquake
+    function markerSize(magnitude) {
+        if (magnitude === 0) {
+          return 1;
+        }
+        return magnitude * 3;
+    }
+
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
