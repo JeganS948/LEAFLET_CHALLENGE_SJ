@@ -28,6 +28,19 @@ function createFeatures(earthquakeData) {
         return magnitude * 3;
     }
 
+    // Function to Determine Style of Marker Based on the Magnitude of the Earthquake
+    function styleInfo(feature) {
+        return {
+          opacity: 1,
+          fillOpacity: 1,
+          fillColor: chooseColor(feature.properties.mag),
+          color: "#000000",
+          radius: markerSize(feature.properties.mag),
+          stroke: true,
+          weight: 0.5
+        };
+    }
+    
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
@@ -43,7 +56,7 @@ function createMap(earthquakes) {
     // Define variables for tile layers
     var satelliteMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
-        maxZoom: 18,
+        maxZoom; 18,
         id: "mapbox.satellite",
         accessToken: API_KEY
     }).addTo(mymap);
