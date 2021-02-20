@@ -40,6 +40,28 @@ function createFeatures(earthquakeData) {
           weight: 0.5
         };
     }
+
+    // Define function to set the circle color based on the magnitude
+    function circleColor(magnitude) {
+        if (magnitude < 1) {
+        return "#ccff33"
+        }
+        else if (magnitude < 2) {
+        return "#ffff33"
+        }
+        else if (magnitude < 3) {
+        return "#ffcc33"
+        }
+        else if (magnitude < 4) {
+        return "#ff9933"
+        }
+        else if (magnitude < 5) {
+        return "#ff6633"
+        }
+        else {
+        return "#ff3333"
+        }
+    }
     
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
@@ -54,12 +76,12 @@ function createFeatures(earthquakeData) {
 function createMap(earthquakes) {
 
     // Define variables for tile layers
-    var satelliteMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
-        maxZoom; 18,
-        id: "mapbox.satellite",
-        accessToken: API_KEY
-    }).addTo(mymap);
+    var satelliteMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.satellite",
+    accessToken: API_KEY
+});
 
     // Define baseMaps object to hold our base layers
     var baseMaps = {
