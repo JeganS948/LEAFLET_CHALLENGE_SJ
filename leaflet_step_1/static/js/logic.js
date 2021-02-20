@@ -19,15 +19,15 @@ function createFeatures(earthquakeData) {
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
-    var eq = L.geoJSON(earthquakeData, {
+    var earthquakes = L.geoJSON(earthquakeData, {
         onEachFeature: onEachFeature
     });
     
     // Sending our earthquakes layer to the createMap function
-    createImageBitmap(eq);
+    createImageBitmap(earthquakes);
 }
 
-function createMap(eq) {
+function createMap(earthquakes) {
 
     // Define variables for tile layers
     var satelliteMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -51,13 +51,15 @@ function createMap(eq) {
         accessToken: API_KEY
     }).addTo(mymap);
 
-    // Create faulline layer
-    var faultline = new L.LayerGroup();
-
-    // Define base layers
+    // Define baseMaps object to hold our base layers
     var baseMaps = {
         "Satellite": satelliteMap,
         "Grayscale": grayscaleMap,
         "Outdoors": outdoorsMap
     };
+
+    // Create overlay object to hold our overlay layer
+    var overlayMaps = {
+        earthquakes: earthquakes;
+    }
 }
