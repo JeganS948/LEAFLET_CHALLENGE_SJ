@@ -30,9 +30,34 @@ function createFeatures(earthquakeData) {
 function createMap(eq) {
 
     // Define variables for tile layers
-    var satelliteMap
+    var satelliteMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.satellite",
+        accessToken: API_KEY
+    }).addTo(mymap);
 
-    var greyscaleMap
+    var greyscaleMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.light",
+        accessToken: API_KEY
+    }).addTo(mymap);
 
-    var outdoorMap  
+    var outdoorMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.outdoors",
+        accessToken: API_KEY
+    }).addTo(mymap);
+
+    // Create faulline layer
+    var faultline = new L.LayerGroup();
+
+    // Define base layers
+    var baseMaps = {
+        "Satellite": satelliteMap,
+        "Grayscale": grayscaleMap,
+        "Outdoors": outdoorsMap
+    };
 }
