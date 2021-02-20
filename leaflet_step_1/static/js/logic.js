@@ -77,11 +77,13 @@ function createMap(earthquakes) {
 
     // Define variables for tile layers
     var satelliteMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
-    id: "mapbox.satellite",
-    accessToken: API_KEY
-});
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.satellite",
+        accessToken: API_KEY
+    });
+
+
 
     // Define baseMaps object to hold our base layers
     var baseMaps = {
@@ -90,7 +92,7 @@ function createMap(earthquakes) {
 
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
-        "earthquakes": earthquakes;
+        "earthquakes": earthquakes,
     };
 
     // Create our map, giving it the streetmap and earthquakes layers to display on load
