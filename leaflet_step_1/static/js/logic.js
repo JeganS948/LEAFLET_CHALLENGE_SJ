@@ -1,6 +1,9 @@
 // Retrieve data set vis URL of JSON file
 var alleqUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
+// Initialize & Create Two Separate LayerGroups: earthquakes & tectonicPlates
+var earthquakes = new L.LayerGroup();
+
 // Perform a GET request to query URL
 d3.json(alleqUrl, function(data) {
     // Send data response to data.features function object to the createFeatures function
@@ -60,6 +63,15 @@ function createMap(earthquakes) {
 
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
-        earthquakes: earthquakes;
-    }
+        "earthquakes": earthquakes;
+    };
+
+    // Create our map, giving it the streetmap and earthquakes layers to display on load
+    var myMap = L.map("map", {
+        center: [
+            37.09, -95.71
+        ],
+        zoom: 5,
+        layers: [satelliteMap, earthquakes]
+    });
 }
